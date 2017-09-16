@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+
 require('./styles.scss');
 
 class AwesomeComponent extends React.Component {
@@ -7,15 +8,11 @@ class AwesomeComponent extends React.Component {
     super(props);
     this.state = {
       isPressed: false,
-    }
+    };
   }
 
-  isCurrentlyPressed = () => {
-    return this.state.isPressed;
-  };
-
   onMouseDown = () => {
-    this.longPressTimeout = setTimeout(this.longPressStart, this.props.timeout)
+    this.longPressTimeout = setTimeout(this.longPressStart, this.props.timeout);
   };
 
   onMouseOut = () => {
@@ -27,9 +24,11 @@ class AwesomeComponent extends React.Component {
     });
   };
 
+  isCurrentlyPressed = () => this.state.isPressed;
+
   longPressStart = () => {
     this.props.longPressStart();
-    if(this.props.pressCallback) {
+    if (this.props.pressCallback) {
       this.props.pressCallback();
       this.pressInterval = setInterval(this.props.pressCallback, this.props.pressCallbackTimeout);
     }
@@ -51,6 +50,7 @@ class AwesomeComponent extends React.Component {
         onMouseUp={this.onMouseOut}
       >
         <img
+          alt="long press button"
           src={this.props.img}
           className="hold-image"
         />
@@ -59,7 +59,7 @@ class AwesomeComponent extends React.Component {
 }
 
 AwesomeComponent.defaultProps = {
-  img: require('./clap.svg'),
+  img: require('./clap.svg'), // eslint-disable-line global-require
   timeout: 300,
   longPressStart: () => {},
   longPressEnd: () => {},
