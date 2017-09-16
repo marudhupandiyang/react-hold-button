@@ -1,0 +1,77 @@
+{
+  "name": "hold-button",
+  "version": "1.0.0",
+  "description": "A button that can be held down for an action",
+  "main": "./dist/holdButton.js",
+  "scripts": {
+    "test": "cross-env BABEL_ENV=commonjs mocha-webpack --webpack-config webpack.config-test.js \"test/**/*.spec.js\"",
+    "start": "webpack-dev-server --config webpack.config-example.js",
+    "test:watch": "npm test -- --watch",
+    "test:examples": "node examples/",
+    "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --compilers js:babel-register --recursive",
+    "lint": "eslint src test",
+    "build:prod": "cross-env BABEL_ENV=commonjs webpack -p",
+    "build:dev": "cross-env BABEL_ENV=commonjs webpack",
+    "prepublish": "npm run lint && npm run test && npm run build:prod",
+    "watch": "cross-env BABEL_ENV=commonjs webpack --progress --colors --watch",
+    "doc:generate": "esdoc && open ./doc/index.html"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://marudhupandiyang@bitbucket.org/marudhupandiyang/hold-button.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "npm",
+    "module",
+    "node",
+    "javascript"
+  ],
+  "author": "marudhupandiyang@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://bitbucket.org/marudhupandiyang/hold-button/issues"
+  },
+  "homepage": "https://bitbucket.org/marudhupandiyang/hold-button/overview",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "^3.5.0",
+    "cross-env": "^4.0.0",
+    "css-loader": "^0.28.7",
+    "esdoc": "^0.5.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.28.0",
+    "image-webpack-loader": "^3.4.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.3.0",
+    "mocha-webpack": "^0.7.0",
+    "node-sass": "^4.5.3",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
