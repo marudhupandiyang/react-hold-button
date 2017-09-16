@@ -16,22 +16,32 @@ class AwesomeComponent extends React.Component {
   };
 
   onMouseOut = () => {
-    clearTimeout(this.longPressTimeout);
-    clearInterval(this.pressInterval);
-    this.longPressEnd();
-    this.setState({
-      isPressed: false,
-    });
+    if (this.longPressTimeout || this.pressInterval) {
+      console.log('cleared');
+      clearTimeout(this.longPressTimeout);
+      clearInterval(this.pressInterval);
+      this.longPressTimeout = undefined;
+      this.pressInterval = undefined;
+
+      this.longPressEnd();
+      this.setState({
+        isPressed: false,
+      });
+    }
   };
 
   isCurrentlyPressed = () => this.state.isPressed;
 
   longPressStart = () => {
     this.props.longPressStart();
-    if (this.props.pressCallback) {
+    // When inifite call the timeout for regular period
+    if (!this.props.finite) {
       this.props.pressCallback();
       this.pressInterval = setInterval(this.props.pressCallback, this.props.pressCallbackTimeout);
+    } else if (this.props.finite) {
+      this.pressInterval = setInterval(this.onMouseOut, this.props.pressCallbackTimeout);
     }
+
     this.setState({
       isPressed: true,
     });
@@ -49,22 +59,21 @@ class AwesomeComponent extends React.Component {
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseOut}
       >
-        <img
-          alt="long press button"
-          src={this.props.img}
-          className="hold-image"
-        />
+        <div className="ripple-layer">
+          <span className="ripple-circle"></span>
+        </div>
+        {this.props.children}
       </button>);
   }
 }
 
 AwesomeComponent.defaultProps = {
-  img: require('./clap.svg'), // eslint-disable-line global-require
   timeout: 300,
   longPressStart: () => {},
   longPressEnd: () => {},
-  pressCallbackTimeout: 100,
+  pressCallbackTimeout: 500,
   pressCallback: undefined,
+  finite: true,
 };
 
 AwesomeComponent.propTypes = {
@@ -74,6 +83,7 @@ AwesomeComponent.propTypes = {
   longPressEnd: PropTypes.func,
   pressCallbackTimeout: PropTypes.number,
   pressCallback: PropTypes.func,
+  finite: PropTypes.bool,
 };
 
 export default AwesomeComponent;
