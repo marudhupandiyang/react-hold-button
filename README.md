@@ -1,14 +1,14 @@
-## react-hold-button
+## react-long-press
 A simple button that gives you ability to let the user long press and perform some activity as long as the user is pressing the button. `Long Press` is defined as the user holding the button with their mouse for a long time.
 
 ### Installation:
 
-    npm install react-hold-button
+    npm install react-long-press
 
-
+    
 ### Usage:
 
-    import ReactHoldButton from 'react-hold-button';
+    import ReactHoldButton from 'react-long-press';
 
     class Example extends React.Component {
       render(){

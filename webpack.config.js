@@ -1,13 +1,17 @@
-
-const projectConfig = require('./project.config')
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
 
 const config = {
   entry: './main.js',
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: projectConfig.MODULE_NAME + '.js'
+    filename: 'react-hold-button.js'
   },
   module: {
     rules: [
@@ -16,9 +20,9 @@ const config = {
         test: /\.scss$/,
         use: extractSass.extract({
             use: [{
-                loader: "css-loader"
+              loader: 'css-loader'
             }, {
-                loader: "sass-loader"
+              loader: 'sass-loader'
             }],
         })
         },
@@ -30,10 +34,10 @@ const config = {
           ]
         }
     ],
-    plugins: [
-        extractSass
-    ]
-  }
+  },
+  plugins: [
+      extractSass
+  ]
 };
 
 
