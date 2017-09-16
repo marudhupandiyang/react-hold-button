@@ -1,0 +1,31 @@
+.inbox-container {
+  width: 500px;
+}
+.inbox-item {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+  }
+
+  .inbox-message {
+    margin-right: 10px;
+    flex: 1 1;
+  }
+
+  .inbox-delete {
+    background-color: #fff;
+    border: 1px solid red;
+    border-radius: 2px;
+    padding: 5px;
+    margin-top: 8px;
+
+    &:hover {
+      background-color: red;
+      color: #fff;
+    }
+  }
+}

@@ -12,23 +12,27 @@ class AwesomeComponent extends React.Component {
   }
 
   onMouseDown = () => {
-    this.longPressTimeout = setTimeout(this.longPressStart, this.props.timeout);
+    this.clearTimeout();
+    this.longPressTimeout = setTimeout(this.longPressStart, this.props.startTimeout);
   };
 
   onMouseOut = () => {
-    if (this.longPressTimeout || this.pressInterval) {
+    this.clearTimeout();
+    if (this.isCurrentlyPressed()) {
       console.log('cleared');
-      clearTimeout(this.longPressTimeout);
-      clearInterval(this.pressInterval);
-      this.longPressTimeout = undefined;
-      this.pressInterval = undefined;
-
       this.longPressEnd();
       this.setState({
         isPressed: false,
       });
     }
   };
+
+  clearTimeout = () => {
+    clearTimeout(this.longPressTimeout);
+    clearInterval(this.pressInterval);
+    this.longPressTimeout = undefined;
+    this.pressInterval = undefined;
+  }
 
   isCurrentlyPressed = () => this.state.isPressed;
 
@@ -54,7 +58,7 @@ class AwesomeComponent extends React.Component {
   render() {
     return (
       <button
-        className={`hold-button ${this.state.isPressed ? 'pressed' : ''}`}
+        className={`hold-button ${this.props.className || ''} ${this.state.isPressed ? 'pressed' : ''}`}
         onMouseOut={this.onMouseOut}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseOut}
@@ -68,7 +72,7 @@ class AwesomeComponent extends React.Component {
 }
 
 AwesomeComponent.defaultProps = {
-  timeout: 300,
+  startTimeout: 300,
   longPressStart: () => {},
   longPressEnd: () => {},
   pressCallbackTimeout: 500,
@@ -77,8 +81,7 @@ AwesomeComponent.defaultProps = {
 };
 
 AwesomeComponent.propTypes = {
-  img: PropTypes.string,
-  timeout: PropTypes.number,
+  startTimeout: PropTypes.number,
   longPressStart: PropTypes.func,
   longPressEnd: PropTypes.func,
   pressCallbackTimeout: PropTypes.number,
