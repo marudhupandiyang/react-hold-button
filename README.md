@@ -11,19 +11,43 @@ A simple button that gives you ability to let the user long press and perform so
     import ReactHoldButton from 'react-long-press';
 
     class Example extends React.Component {
+    
+      longPressStart = () => {
+        console.log('Long press Started');
+      };
+      
+      longPressEnd = () => {
+        console.log('Long press Ends');
+      };
+      
       render(){
-        return (<div>
-                <ReactHoldButton
-                  ref={(btn) => { this.holdButton = btn; }}
-                  longPressEnd={this.longPressEnd}
-                  longPressStart={this.longPressStart}
-                  pressCallback={this.isPressing}
-                  pressCallbackTimeout={100}
-                />
-              </div>);
+       return (<div>
+            <LongPressBtn
+              ref={(btn) => { this.holdButton = btn; }}
+              longPressEnd={this.longPressEnd}
+              longPressStart={this.longPressStart}
+              pressCallbackTimeout={2000}
+              className="my-delete-button"
+            />
+          </div>);
       }
     }
 
+Pass a custom `className` prop and add custom CSS for button looks. A simple one is given below
+
+    .my-delete-button {
+      background-color: #fff;
+      border: 1px solid red;
+      border-radius: 2px;
+      padding: 5px;
+      margin-top: 8px;
+
+      &:hover {
+        background-color: red;
+        color: #fff;
+      }
+    }
+    
 
 ### API
 
@@ -41,7 +65,7 @@ A simple button that gives you ability to let the user long press and perform so
 
         Then, the function can be invoked as 
 
-            this.holdButton.isPressed
+            this.holdButton.isPressed()
 
 ### Props 
 
