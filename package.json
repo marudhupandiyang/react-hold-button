@@ -14,7 +14,8 @@
     "build:dev": "cross-env BABEL_ENV=commonjs webpack",
     "prepublish": "npm run lint && npm run test && npm run build:prod",
     "watch": "cross-env BABEL_ENV=commonjs webpack --progress --colors --watch",
-    "doc:generate": "esdoc && open ./doc/index.html"
+    "doc:generate": "esdoc && open ./doc/index.html",
+    "clean": "rm -rf ./dist"
   },
   "files": [
     "src"
