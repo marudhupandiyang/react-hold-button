@@ -7,11 +7,12 @@ const extractSass = new ExtractTextPlugin({
 });
 
 const config = {
-  entry: './main.js',
+  entry: './src/holdButton.jsx',
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'react-hold-button.js'
+    filename: 'react-hold-button.js',
+    libraryTarget: 'commonjs2'
   },
   module: {
     rules: [

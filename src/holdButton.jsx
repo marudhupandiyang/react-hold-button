@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 require('./styles.scss');
 
-class AwesomeComponent extends React.Component {
+class HoldButton extends React.Component {
 
   constructor(props) {
     super(props);
@@ -70,7 +70,7 @@ class AwesomeComponent extends React.Component {
   }
 }
 
-AwesomeComponent.defaultProps = {
+HoldButton.defaultProps = {
   startTimeout: 300,
   longPressStart: () => {},
   longPressEnd: () => {},
@@ -80,7 +80,7 @@ AwesomeComponent.defaultProps = {
   className: '',
 };
 
-AwesomeComponent.propTypes = {
+HoldButton.propTypes = {
   startTimeout: PropTypes.number,
   longPressStart: PropTypes.func,
   longPressEnd: PropTypes.func,
@@ -91,4 +91,4 @@ AwesomeComponent.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default AwesomeComponent;
+export default HoldButton;

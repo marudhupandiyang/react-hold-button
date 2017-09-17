@@ -2,7 +2,7 @@
   "name": "react-long-press",
   "version": "0.1.3",
   "description": "A button that can be held down(long pressed) for initiating an action",
-  "main": "./dist/holdButton.js",
+  "main": "dist/react-hold-button.js",
   "scripts": {
     "test": "cross-env BABEL_ENV=commonjs mocha-webpack --webpack-config webpack.config-test.js \"test/**/*.spec.js\"",
     "start": "webpack-dev-server --config webpack.config-example.js",

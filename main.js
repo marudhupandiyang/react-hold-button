@@ -1,3 +1,3 @@
-import HoldButton from './src/holdButton.jsx';
+import HoldButton from './src/holdButton';
 
 export default HoldButton;
