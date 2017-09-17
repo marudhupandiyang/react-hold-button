@@ -19,8 +19,6 @@ class AwesomeComponent extends React.Component {
   onMouseOut = () => {
     this.clearTimeout();
     if (this.isCurrentlyPressed()) {
-      console.log('cleared');
-      this.longPressEnd();
       this.setState({
         isPressed: false,
       });
@@ -43,7 +41,7 @@ class AwesomeComponent extends React.Component {
       this.props.pressCallback();
       this.pressInterval = setInterval(this.props.pressCallback, this.props.pressCallbackTimeout);
     } else if (this.props.finite) {
-      this.pressInterval = setInterval(this.onMouseOut, this.props.pressCallbackTimeout);
+      this.pressInterval = setTimeout(this.longPressEnd, this.props.pressCallbackTimeout);
     }
 
     this.setState({
@@ -52,19 +50,20 @@ class AwesomeComponent extends React.Component {
   };
 
   longPressEnd = () => {
+    this.onMouseOut();
     this.props.longPressEnd();
   };
 
   render() {
     return (
       <button
-        className={`hold-button ${this.props.className || ''} ${this.state.isPressed ? 'pressed' : ''}`}
+        className={`hold-button ${this.props.className} ${this.state.isPressed ? 'pressed' : ''}`}
         onMouseOut={this.onMouseOut}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseOut}
       >
         <div className="ripple-layer">
-          <span className="ripple-circle"></span>
+          <span className="ripple-circle" />
         </div>
         {this.props.children}
       </button>);
@@ -78,6 +77,7 @@ AwesomeComponent.defaultProps = {
   pressCallbackTimeout: 500,
   pressCallback: undefined,
   finite: true,
+  className: '',
 };
 
 AwesomeComponent.propTypes = {
@@ -87,6 +87,8 @@ AwesomeComponent.propTypes = {
   pressCallbackTimeout: PropTypes.number,
   pressCallback: PropTypes.func,
   finite: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default AwesomeComponent;

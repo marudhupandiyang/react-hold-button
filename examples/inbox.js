@@ -75,7 +75,7 @@ class Inbox extends React.Component {
                           <div className="inbox-message">
                             <div>{item.subject}</div>
                             <HoldButton
-                              pressCallbackTimeout={1000}
+                              pressCallbackTimeout={2000}
                               longPressEnd={() => { this.deleteMessage(item); }}
                               className="inbox-delete">Delete</HoldButton>
                           </div>
