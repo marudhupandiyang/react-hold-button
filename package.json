@@ -1,6 +1,6 @@
 {
   "name": "react-long-press",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A button that can be held down(long pressed) for initiating an action",
   "main": "dist/react-hold-button.js",
   "scripts": {
