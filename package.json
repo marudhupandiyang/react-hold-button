@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://marudhupandiyang@bitbucket.org/marudhupandiyang/react-hold-button.git"
+    "url": "git+https://github.com/marudhupandiyang/react-hold-button.git"
   },
   "keywords": [
     "long-press",
@@ -35,9 +35,9 @@
   "author": "marudhupandiyang@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://marudhupandiyang@bitbucket.org/marudhupandiyang/react-hold-button/issues"
+    "url": "https://github.com/marudhupandiyang/react-hold-button/issues"
   },
-  "homepage": "https://marudhupandiyang@bitbucket.org/marudhupandiyang/react-hold-button",
+  "homepage": "https://github.com/marudhupandiyang/react-hold-button",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
