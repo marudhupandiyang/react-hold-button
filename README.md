@@ -22,7 +22,7 @@ A simple button that gives you ability to let the user long press and perform so
       
       render(){
        return (<div>
-            <LongPressBtn
+            <ReactHoldButton
               ref={(btn) => { this.holdButton = btn; }}
               longPressEnd={this.longPressEnd}
               longPressStart={this.longPressStart}
